@@ -11,7 +11,7 @@ const vertices = [
   { left: -10, top: DEFAULT_SIZE / 3 },
   { left: DEFAULT_SIZE, top: DEFAULT_SIZE / 3 },
 ];
-let currentPoint = vertices[0];
+let currentPoint = vertices[2];
 let lastVertice = 0;
 
 const getRandomVertice = (lastVerticeIndex: number) => {
@@ -31,16 +31,17 @@ const getHalfPoint = (currentPoint: Vertice, selectedVertice: Vertice) => {
 
 const dots: Vertice[] = [];
 
-
-
-export default function App() {
-  const [timer, setTimer] = React.useState(1);
-
+const addNewPoint = () => {
   const newDot = getHalfPoint(currentPoint, vertices[lastVertice]);
   const verticeIdx = getRandomVertice(lastVertice);
   dots.push(newDot);
   lastVertice = verticeIdx;
   currentPoint = { ...newDot };
+};
+
+export default function App() {
+  const [timer, setTimer] = React.useState(1);
+  addNewPoint();
 
   React.useEffect(() => {
     const timerId = setInterval(() => {
