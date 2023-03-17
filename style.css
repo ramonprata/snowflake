@@ -2,6 +2,10 @@ h1,
 p {
   font-family: Lato;
 }
+body {
+  margin: 0;
+  padding: 0;
+}
 
 .container {
   position: fixed;
@@ -15,8 +19,8 @@ p {
 
 .pentagon {
   position: relative;
-  height: 500px;
-  width: 500px;
+  height: 300px;
+  width: 300px;
   /* border: 1px dashed #ddd; */
   /* background-color: white; */
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './style.css';
 
-const DEFAULT_SIZE = 500;
+const DEFAULT_SIZE = 300;
 type Vertice = { left: number; top: number };
 
 const vertices = [
@@ -32,11 +32,13 @@ const getHalfPoint = (currentPoint: Vertice, selectedVertice: Vertice) => {
 const dots: Vertice[] = [];
 
 const addNewPoint = () => {
-  const newDot = getHalfPoint(currentPoint, vertices[lastVertice]);
-  const verticeIdx = getRandomVertice(lastVertice);
-  dots.push(newDot);
-  lastVertice = verticeIdx;
-  currentPoint = { ...newDot };
+  for (let i = 0; i < 100; i++) {
+    const newDot = getHalfPoint(currentPoint, vertices[lastVertice]);
+    const verticeIdx = getRandomVertice(lastVertice);
+    dots.push(newDot);
+    lastVertice = verticeIdx;
+    currentPoint = { ...newDot };
+  }
 };
 
 export default function App() {
@@ -46,7 +48,7 @@ export default function App() {
   React.useEffect(() => {
     const timerId = setInterval(() => {
       return setTimer(timer + 1);
-    }, 10);
+    }, 500);
     return () => clearInterval(timerId);
   });
 
