@@ -17,8 +17,8 @@ p {
   position: relative;
   height: 500px;
   width: 500px;
-  border: 1px dashed #ddd;
-  background-color: white;
+  /* border: 1px dashed #ddd; */
+  /* background-color: white; */
 }
 
 .vertice {
@@ -30,9 +30,6 @@ p {
 }
 
 .dot {
-  height: 4px;
-  width: 4px;
-  border-radius: 50%;
-  background-color: black;
+  font-size: 10px;
   position: absolute;
 }
