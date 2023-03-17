@@ -11,52 +11,49 @@ const vertices = [
   { left: DEFAULT_SIZE * 0.2, top: DEFAULT_SIZE },
   { left: DEFAULT_SIZE * 0.8, top: DEFAULT_SIZE },
 ];
-let currentPoint = vertices[0];
+let currentPoint = vertices[4];
 let lastVertice = 0;
 
 const getRandomVertice = (lastVerticeIndex: number) => {
-  let selectedVertice = Math.floor(Math.random() * 5) + 1;
+  let selectedVertice = Math.floor(Math.random() * 4) + 1;
   while (selectedVertice === lastVerticeIndex) {
-    selectedVertice = Math.floor(Math.random() * 5) + 1;
+    selectedVertice = Math.floor(Math.random() * 4) + 1;
   }
   return selectedVertice;
 };
 
 const getHalfPoint = (selectedVertice: Vertice, currentPoint: Vertice) => {
   return {
-    top: (selectedVertice.top + currentPoint.top) / 2,
-    left: (selectedVertice.left + currentPoint.left) / 2,
+    top: (currentPoint.top + selectedVertice.top) / 2,
+    left: (currentPoint.left + selectedVertice.left) / 2,
   };
 };
 
 const dots: Vertice[] = [];
 
 export default function App() {
-  const [count, setCount] = React.useState<number>(0);
+  const [timer, setTimer] = React.useState(1);
 
+  const verticeIdx = getRandomVertice(lastVertice);
+  const newDot = getHalfPoint(vertices[verticeIdx], currentPoint);
+  dots.push(newDot);
+  lastVertice = verticeIdx;
+  currentPoint = { ...newDot };
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      // dots.push(newDot);
-      console.log('This will be called every 2 seconds');
-    }, 2000);
-
-    const verticeIdx = getRandomVertice(lastVertice);
-    const newDot = getHalfPoint(vertices[verticeIdx], currentPoint);
-    lastVertice = verticeIdx;
-    currentPoint = newDot;
-
-    // setCount((c) => (c += 1));
-    return () => clearInterval(interval);
-  }, []);
+    const timerId = setInterval(() => {
+      return setTimer(timer + 1);
+    }, 300);
+    return () => clearInterval(timerId);
+  });
 
   return (
     <div className="container">
       <div className="pentagon">
-        {vertices.map((v, idx) => (
+        {/* {vertices.map((v, idx) => (
           <div key={idx} className="vertice" style={{ ...v }}></div>
-        ))}
-        {dots.map((d) => (
-          <div className="dot" style={{ ...d }} />
+        ))} */}
+        {dots.map((d, idx) => (
+          <span className="dot" key={idx} style={{ ...d }} />
         ))}
       </div>
     </div>
