@@ -1,15 +1,15 @@
 import * as React from 'react';
 import './style.css';
 
-const DEFAULT_SIZE = 300;
+const DEFAULT_SIZE = window.innerHeight * 0.5;
 type Vertice = { left: number; top: number };
 
 const vertices = [
-  { left: DEFAULT_SIZE / 2 - 5, top: -10 },
+  { left: DEFAULT_SIZE / 2 - 10, top: -20 },
+  { left: DEFAULT_SIZE, top: DEFAULT_SIZE / 3 },
   { left: DEFAULT_SIZE * 0.8, top: DEFAULT_SIZE },
   { left: DEFAULT_SIZE * 0.2, top: DEFAULT_SIZE },
-  { left: -10, top: DEFAULT_SIZE / 3 },
-  { left: DEFAULT_SIZE, top: DEFAULT_SIZE / 3 },
+  { left: -20, top: DEFAULT_SIZE / 3 },
 ];
 let currentPoint = vertices[2];
 let lastVertice = 0;
@@ -48,19 +48,16 @@ export default function App() {
   React.useEffect(() => {
     const timerId = setInterval(() => {
       return setTimer(timer + 1);
-    }, 500);
+    }, 50);
     return () => clearInterval(timerId);
   });
 
   return (
     <div className="container">
       <div className="pentagon">
-        {/* {vertices.map((v, idx) => (
-          <div key={idx} className="vertice" style={{ ...v }}></div>
-        ))} */}
         {dots.map((d, idx) => (
           <span className="dot" key={idx} style={{ ...d }}>
-            *
+            .
           </span>
         ))}
       </div>

@@ -19,21 +19,45 @@ body {
 
 .pentagon {
   position: relative;
-  height: 300px;
-  width: 300px;
-  /* border: 1px dashed #ddd; */
-  /* background-color: white; */
+  height: 50vh;
+  width: 50vh;
 }
 
 .vertice {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
+  height: 1px;
+  width: 1px;
   background-color: black;
   position: absolute;
 }
 
 .dot {
-  font-size: 10px;
+  font-size: 20px;
   position: absolute;
+  font-weight: bold;
+  -webkit-animation: 1s ease 0s normal forwards 1 fadein;
+  animation: 1s ease 0s normal forwards 1 fadein;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
